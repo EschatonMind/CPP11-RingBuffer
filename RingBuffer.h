@@ -26,6 +26,14 @@ public:
 		return m_size;
 	}
 
+	Iterator begin() {
+		return Iterator(0, *this);
+	}
+
+	Iterator end() {
+		return Iterator(m_size, *this);
+	}
+
 	void add(T value) {
 
 		m_values[m_pose++] = value;
@@ -42,9 +50,33 @@ public:
 
 template<class T>
 class RingBuffer<T>::Iterator {
-
+private:
+	int m_pose;
+	RingBuffer& m_Ring;
 public:
-	void print() {
-		cout << " I'm the Iterator : " << T() << endl;
+	Iterator(int pose, RingBuffer& Ring): m_pose(pose), m_Ring(Ring) {
+
+	}
+
+	Iterator& operator++(int) {
+		m_pose++;
+		return *this;
+	}
+
+	Iterator& operator++() {
+		m_pose++;
+		return *this;
+	}
+
+	T& operator*() {
+		return m_Ring.get(m_pose);
+	}
+
+	bool operator!=(const Iterator& other)const {
+		return m_pose != other.m_pose;
+	}
+
+	bool operator==(const Iterator& other)const {
+		return m_pose == other.m_pose;
 	}
 };
