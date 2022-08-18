@@ -1,0 +1,2 @@
+# CPP11-RingBuffer
+In thgis Repo i created an exercise about Ring-Buffer, Circular buffers (also known as ring buffers) are fixed-size buffers that work as if the memory is contiguous & circular in nature. As memory is generated and consumed, data does not need to be reshuffled – rather, the head/tail pointers are adjusted. When data is added, the head pointer advances. When data is consumed, the tail pointer advances. If you reach the end of the buffer, the pointers simply wrap around to the beginning.
